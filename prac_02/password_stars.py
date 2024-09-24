@@ -2,7 +2,8 @@
 function main
     password = get_password()
     number = len of password
-    print_password(number)
+    star_number = print_password
+    display star_number
 function get_password
     get password
     while len of password less than 10
@@ -10,12 +11,15 @@ function get_password
         get password
     return password
 function print_password
-    display "*" multiply by number
+    return "*" multiply by number
 """
+
+
 def main():
     password = get_password()
     number = len(password)
-    print_password(number)
+    star_number = print_password(number)
+    print(star_number)
 
 
 def get_password():
@@ -29,7 +33,7 @@ def get_password():
 
 def print_password(number):
     """This function for print "*" via the length of the password"""
-    print("*" * number)
+    return "*" * number
 
 
 main()

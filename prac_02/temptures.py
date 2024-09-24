@@ -1,8 +1,8 @@
 """
+MENU = ("C - Convert Celsius to Fahrenheit"
+        "\nF - Convert Fahrenheit to Celsius"
+        "\nQ - Quit")
 function main
-    MENU = ("C - Convert Celsius to Fahrenheit"
-            "\nF - Convert Fahrenheit to Celsius"
-            "\nQ - Quit")
     display MENU
     get choice in upper case
     while choice != to Q
@@ -26,10 +26,12 @@ function fahrenheit_to_celsius
     calculater Fahrenheit to Celsius
     return Fahrenheit
 """
+
+
+MENU = ("C - Convert Celsius to Fahrenheit"
+        "\nF - Convert Fahrenheit to Celsius"
+        "\nQ - Quit")
 def main():
-    MENU = ("C - Convert Celsius to Fahrenheit"
-            "\nF - Convert Fahrenheit to Celsius"
-            "\nQ - Quit")
     print(MENU)
     choice = input(">>> ").upper()
     while choice != "Q":
