@@ -1,6 +1,21 @@
 """
 CP1404/CP5632 Practical
 Starter code for cumulative total income program
+
+function main
+    incomes = empty list
+    get month_number
+    for month in range from 1 to month_number + 1
+        get income in float type
+        append income to incomes
+    call the function print_report
+function print_report
+    display halving line
+    total = 0
+    for month in range from 1 to month_number + 1
+        income = incomes[month - 1]
+        total = total + income
+        display income and total
 """
 
 
@@ -17,7 +32,7 @@ def main():
 
 
 def print_report(incomes, month_number):
-    """This function will display the report via given month number and incomes."""
+    """This function will display the report via given month number and incomes and halving line."""
     print("\nIncome Report\n-------------")
     total = 0
     for month in range(1, month_number + 1):
