@@ -1,5 +1,10 @@
-from prac_06.guitar import Guitar
+"""
+Guitar
+Estimate: 20 minutes
+Actual:   27 minutes
+"""
 
+from prac_06.guitar import Guitar
 
 guitar1 = Guitar("Gibson L-5 CES", 1924)
 guitar2 = Guitar("Another Guitar", 2015)
