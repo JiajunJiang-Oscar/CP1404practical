@@ -1,5 +1,5 @@
 """
-Guitar
+Guitars
 Estimate: 20 minutes
 Actual:   27 minutes
 
@@ -25,27 +25,37 @@ for i, guitar in enumerate guitars
 
 from prac_06.guitar import Guitar
 
-guitars = [
-    Guitar("Gibson L-5 CES", 1924, "16,035.40"),
-    Guitar("Another Guitar", 2015, "1,512.90")
-]
+def main():
+    """This program to get guitar information and display it"""
+    guitars = []
 
-name = input("Name: ")
-while name != "":
-    year = input("Year: ")
-    cost = input("Cost: ")
-    guitars.append(Guitar(name, int(year), cost))
-    print(f"{name} ({year}) : {cost} added.\n")
     name = input("Name: ")
+    while name != "":
+        year = input("Year: ")
+        cost = input("Cost: ")
+        guitars.append(Guitar(name, int(year), cost))
 
-print("\n... snip ...\n"
-      "\nThere are my guitars:")
+        # add success message
+        print(f"{name} ({year}) : {cost} added.\n")
 
-for i, guitar in enumerate(guitars, 1):
-    # Check the return value
-    if guitar.is_vintage():
-        message = "(vintage)"
-    else:
-        message = ""
+        # get input again
+        name = input("Name: ")
 
-    print(f"Guitar {i}: {guitar.name:>20} ({guitar.year}), worth ${guitar.cost:>10}{message}")
+    # Add the two default information in list when input is finish
+    guitars.append(Guitar("Gibson L-5 CES", 1924, "16,035.40"))
+    guitars.append(Guitar("Another Guitar", 2015, "1,512.90"))
+
+    # Print the halving line
+    print("\n... snip ...\n"
+          "\nThere are my guitars:")
+
+    for i, guitar in enumerate(guitars, 1):
+        # Check the return value and add message
+        if guitar.is_vintage():
+            message = "(vintage)"
+        else:
+            message = ""
+
+        print(f"Guitar {i}: {guitar.name:>20} ({guitar.year}), worth ${guitar.cost:>10}{message}")
+
+main()

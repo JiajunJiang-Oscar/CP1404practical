@@ -17,18 +17,24 @@ for ProgrammingLanguage in languages
     display current language in ProgrammingLanguage
 """
 
-from prac_06.programming_language import ProgrammingLanguage
+def main():
+    """Use to show the program languages in format"""
 
-python = ProgrammingLanguage("Python", "Dynamic", True, 1991)
-print(python)
+    from prac_06.programming_language import ProgrammingLanguage
 
-languages = [
-    ProgrammingLanguage("Python", "Dynamic", True, 1991),
-    ProgrammingLanguage("Ruby", "Dynamic", True, 1995),
-    ProgrammingLanguage("Visual Basic", "Static", False, 1991)
-]
+    python = ProgrammingLanguage("Python", "Dynamic", True, 1991)
+    ruby = ProgrammingLanguage("Ruby", "Dynamic", True, 1995)
+    visual_basic = ProgrammingLanguage("Visual Basic", "Static", False, 1991)
 
-print("The dynamically typed languages are:")
-for ProgrammingLanguage in languages:
-    if ProgrammingLanguage.reflection:
-        print(ProgrammingLanguage.language)
+    print(python)
+
+    # storage three languages in a list
+    languages = [python, ruby, visual_basic]
+    print("The dynamically typed languages are:")
+    for ProgrammingLanguage in languages:
+
+        # if reflection of ProgrammingLanguage equal to True
+        if ProgrammingLanguage.reflection:
+            print(ProgrammingLanguage.language)
+
+main()
