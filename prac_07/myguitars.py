@@ -2,16 +2,8 @@ import csv
 from prac_07.guitar import Guitar
 
 def main():
-    """Read file of guitar, save as objects, ask for new guitar, display."""
+    """Ask for new guitar, read file of guitar, save as objects, display."""
     guitars = []
-    in_file = open('guitars.csv', 'r')
-
-    for line in in_file:
-        line = line.strip().split(",")
-        guitar = Guitar(line[0], int(line[1]), line[2])
-        guitars.append(guitar)
-    in_file.close()
-
     # Ask for get new guitar input and write in csv
     add_message = []
     name = input("Name: ")
@@ -31,6 +23,14 @@ def main():
 
         # get input again
         name = input("Name: ")
+
+    in_file = open('guitars.csv', 'r')
+
+    for line in in_file:
+        line = line.strip().split(",")
+        guitar = Guitar(line[0], int(line[1]), line[2])
+        guitars.append(guitar)
+    in_file.close()
 
     # sort for guitars list
     guitars.sort()
