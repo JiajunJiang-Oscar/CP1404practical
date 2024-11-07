@@ -13,7 +13,10 @@ class Project:
         self.completion_percentage = completion_percentage
 
     def is_complete(self):
-        return self.completion_percentage == 100
+        return self.completion_percentage >= 100
+
+    def string_changer(self):
+        return f"{self.name}\t{self.date}\t{self.priority}\t{self.cost}\t{self.completion_percentage}"
 
     def __str__(self):
         return (f"{self.name}, start: {self.date}, priority {self.priority}, estimate: {self.cost}, "
