@@ -5,6 +5,11 @@ Actual:   2.5 hours
 """
 
 from prac_07.project import Project
+MIN_NUMBER = 0
+MAX_NUMBER = 100
+MAX_PRIORITY = 10
+MENU_RULE = ["L", "S", "D", "F", "A", "U", "Q"]
+CHOICE_RULE = ["Y", "N"]
 MENU = ("- (L)oad projects\n"
         "- (S)ave projects\n"
         "- (D)isplay projects\n"
@@ -19,7 +24,7 @@ def main():
     print(f"Welcome to Pythonic Project Management"
           f"\nLoaded {len(datas)} projects from {file_name}.")
 
-    choice = input(f"{MENU}\n>>>").upper()
+    choice = get_valid_input(MENU, MENU_RULE)
     while choice != "Q":
         if choice == "L":
 
@@ -49,16 +54,32 @@ def main():
         elif choice == "U":
             update_data(datas)
 
-        choice = input(f"\n{MENU}\n>>>").upper()
+        choice = get_valid_input(MENU, MENU_RULE)
 
     # Ask user did they need upload data to current file or not before program finish
-    save_choice = input(f"Would you like to save to {file_name}? ").upper()
+    save_choice = get_valid_input(f"Would you like to save to {file_name}? (y/n)", CHOICE_RULE)
     if "N" in save_choice:
         print("Thank you for using custom-built project management software.")
     elif "Y" in save_choice:
         save_data(datas, file_name)
         print("Data save successfully"
               "\nThank you for using custom-built project management software.")
+
+
+def get_valid_input(prompt, rules):
+    message = input(f"{prompt}\n>>>").upper()
+    while message not in (rule for rule in rules):
+        print("Invalid input, Please try again.\n")
+        message = input(f"{prompt}\n>>>").upper()
+    return message
+
+
+def get_valid_number(prompt, rule):
+    number = int(input(f"{prompt}: "))
+    while number > rule or number < MIN_NUMBER:
+        print("Invalid number, Please try again.\n")
+        number = int(input(f"{prompt}: "))
+    return number
 
 
 def read_file(file_name):
@@ -114,9 +135,9 @@ def update_data(datas):
     for data in datas:
         print(f"{i} {data}")
         i += 1
-    update_choice = int(input("Project choice: "))
+    update_choice = get_valid_number("Project choice", len(datas) - 1)
     print(datas[update_choice])
-    new_percentage = int(input("New Percentage: "))
+    new_percentage = get_valid_number("Project new percentage", MAX_NUMBER)
     datas[update_choice].completion_percentage = new_percentage
 
 
@@ -124,9 +145,9 @@ def add_data(datas):
     """To add a new data in current project, but not save to file"""
     name = input("Name: ")
     date = input("Start date (dd/mm/yy): ")
-    priority = input("Priority: ")
-    cost = input("Cost estimate: $")
-    completion_percentage = input("Completion percentage: ")
+    priority = get_valid_number("Priority", MAX_PRIORITY)
+    cost = get_valid_number("Cost estimate: $", 1000000.00)
+    completion_percentage = get_valid_number("Completion percentage", MAX_NUMBER)
     data = Project(name, date, priority, cost, int(completion_percentage))
     datas.append(data)
 
