@@ -3,6 +3,7 @@ from prac_09.silver_service_taxi import SilverServiceTaxi
 
 MENU = "q)uit, c)hoose taxi, d)rive"
 
+
 def main():
     print("Let's Drive!")
     taxis = [
@@ -10,6 +11,7 @@ def main():
         SilverServiceTaxi("Limo", 100, 2),
         SilverServiceTaxi("Hummer", 200, 4)
     ]
+
     bill = 0
     current_taxi = None
     choice = input(f"{MENU}\n>>>").lower()
@@ -17,11 +19,17 @@ def main():
         if choice == "c":
             current_taxi = choose_taxi(taxis)
         elif choice == "d":
-            print("d")
+            if current_taxi is None:
+                print("You need to choose a taxi before you can drive.")
+            else:
+                bill += drive_taxi(current_taxi)
+                print(f"Bill to date: ${bill:.2f}")
         else:
             print("Invalid option")
         choice = input(f"{MENU}\n>>>").lower()
-    print("Bye")
+    print(f"Total trip cost: ${bill:.2f}")
+    print("Taxis are now:")
+    display_taxis(taxis)
 
 
 def choose_taxi(taxis):
@@ -36,13 +44,27 @@ def choose_taxi(taxis):
             print("Invalid taxi choice")
     except ValueError:
         print("Invalid input")
-    return None
+
+
+def drive_taxi(taxi):
+    """Ask the user how far to drive and calculate the trip cost."""
+    try:
+        distance = float(input("Drive how far? "))
+        taxi.start_fare()  # Start a new fare
+        taxi.drive(distance)
+        fare = taxi.get_fare()
+        print(f"Your {taxi.name} trip cost you ${fare:.2f}")
+        return fare
+    except ValueError:
+        print("Invalid input")
+        return 0
 
 
 def display_taxis(taxis):
     """Display the list of taxis with their current status."""
     for i, taxi in enumerate(taxis):
         print(f"{i} - {taxi}")
+
 
 if __name__ == '__main__':
     main()
